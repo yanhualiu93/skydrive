@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.liuyanhua.skydrive.mapper.FileMapper">
+  <resultMap id="BaseResultMap" type="top.liuyanhua.skydrive.models.File">
+    <!--@mbg.generated generated on Wed Jun 12 06:31:24 CST 2019.-->
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="md5" jdbcType="VARCHAR" property="md5" />
+    <result column="file_name" jdbcType="VARCHAR" property="fileName" />
+    <result column="file_size" jdbcType="BIGINT" property="fileSize" />
+    <result column="storage_mode" jdbcType="INTEGER" property="storageMode" />
+    <result column="second_upload" jdbcType="INTEGER" property="secondUpload" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="file_type" jdbcType="VARCHAR" property="fileType" />
+    <result column="download_url" jdbcType="VARCHAR" property="downloadUrl" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--@mbg.generated generated on Wed Jun 12 06:31:24 CST 2019.-->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--@mbg.generated generated on Wed Jun 12 06:31:24 CST 2019.-->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated generated on Wed Jun 12 06:31:24 CST 2019.-->
+    id, md5, file_name, file_size, storage_mode, second_upload, `status`, file_type, 
+    download_url
+  </sql>
+  <select id="selectByExample" parameterType="top.liuyanhua.skydrive.models.FileExample" resultMap="BaseResultMap">
+    <!--@mbg.generated generated on Wed Jun 12 06:31:24 CST 2019.-->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from file
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="top.liuyanhua.skydrive.models.FileExample">
+    <!--@mbg.generated generated on Wed Jun 12 06:31:24 CST 2019.-->
+    delete from file
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <select id="countByExample" parameterType="top.liuyanhua.skydrive.models.FileExample" resultType="java.lang.Long">
+    <!--@mbg.generated generated on Wed Jun 12 06:31:24 CST 2019.-->
+    select count(*) from file
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--@mbg.generated generated on Wed Jun 12 06:31:24 CST 2019.-->
+    update file
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.md5 != null">
+        md5 = #{record.md5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fileName != null">
+        file_name = #{record.fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fileSize != null">
+        file_size = #{record.fileSize,jdbcType=BIGINT},
+      </if>
+      <if test="record.storageMode != null">
+        storage_mode = #{record.storageMode,jdbcType=INTEGER},
+      </if>
+      <if test="record.secondUpload != null">
+        second_upload = #{record.secondUpload,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null">
+        `status` = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.fileType != null">
+        file_type = #{record.fileType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.downloadUrl != null">
+        download_url = #{record.downloadUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--@mbg.generated generated on Wed Jun 12 06:31:24 CST 2019.-->
+    update file
+    set id = #{record.id,jdbcType=VARCHAR},
+      md5 = #{record.md5,jdbcType=VARCHAR},
+      file_name = #{record.fileName,jdbcType=VARCHAR},
+      file_size = #{record.fileSize,jdbcType=BIGINT},
+      storage_mode = #{record.storageMode,jdbcType=INTEGER},
+      second_upload = #{record.secondUpload,jdbcType=INTEGER},
+      `status` = #{record.status,jdbcType=INTEGER},
+      file_type = #{record.fileType,jdbcType=VARCHAR},
+      download_url = #{record.downloadUrl,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>
